@@ -42,4 +42,4 @@ const Pokemon = ({ pokemon, handleClick }) => {
   )
 }
 
-export default Pokemon;
+export default Pokemon

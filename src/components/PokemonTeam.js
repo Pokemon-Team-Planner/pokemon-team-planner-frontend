@@ -4,11 +4,34 @@ import Pokemon from './Pokemon'
 import { useSelector, useDispatch } from 'react-redux'
 import { Box } from '@mui/system'
 import { removePokemon } from '../reducers/pokemonTeamReducer'
+import { v4 as uuidv4 } from 'uuid';
+import questionMarkSprite from '../assets/question-mark.png'
 
 const PokemonTeam = () => {
   const dispatch = useDispatch()
   const pokemonTeam = useSelector(state => state.pokemonTeam)
-  console.log(pokemonTeam)
+
+  const missingPokemon = {
+    id: 0,
+    uniqueId: uuidv4(),
+    name: "?",
+    sprites: {
+      front_default: `${questionMarkSprite}`
+    },
+    types: [
+      {
+        type: {
+          name: "?"
+        }
+      }
+    ]
+  }
+
+  const emptyTeamMembers = []
+  for (let i = pokemonTeam.length; i < 6; i++) {
+    let emptyTeamMember = {...missingPokemon, uniqueId: uuidv4()}
+    emptyTeamMembers.push(<Pokemon key={emptyTeamMember.uniqueId} pokemon={emptyTeamMember} />)
+  }
 
   return (
     <Box paddingBottom="20px">
@@ -23,6 +46,7 @@ const PokemonTeam = () => {
             handleClick={ () =>
               dispatch(removePokemon(pokemon))} />
         )}
+        {emptyTeamMembers}
       </Grid>
     </Box>
   )
