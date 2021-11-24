@@ -3,6 +3,7 @@ import { initializePokemon } from "./reducers/pokemonReducer"
 import { useDispatch } from "react-redux"
 import PokemonGrid from "./components/PokemonGrid"
 import { Container, Typography } from "@mui/material"
+import PokemonTeam from "./components/PokemonTeam"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const App = () => {
       >
         Pokemon Team Builder
       </Typography>
+      <PokemonTeam />
       <PokemonGrid />
     </Container>
   )

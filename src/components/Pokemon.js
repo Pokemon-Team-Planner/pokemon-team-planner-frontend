@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Card, CardMedia, CardContent, CardActionArea, Typography } from '@mui/material'
 
-const Pokemon = ({ pokemon }) => {
+const Pokemon = ({ pokemon, handleClick }) => {
 
   return (
     <div>
@@ -9,7 +9,7 @@ const Pokemon = ({ pokemon }) => {
         <Card
           sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
         >
-          <CardActionArea>
+          <CardActionArea onClick={handleClick}>
             <CardMedia
               component="img"
               sx= {{
