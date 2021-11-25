@@ -7,7 +7,7 @@ const Pokemon = ({ pokemon, handleClick }) => {
     <div>
       <Grid item key={pokemon.id} xs="auto" sm="auto" md="auto">
         <Card
-          sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+          sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: '9vw' }}
         >
           <CardActionArea onClick={handleClick}>
             <CardMedia
@@ -26,7 +26,7 @@ const Pokemon = ({ pokemon, handleClick }) => {
               alt={`${pokemon.name}`}
             />
           <CardContent>
-            <Typography align="center" variant="subtitle1">
+            <Typography align="center" variant="subtitle2">
               {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
             </Typography>
             <Typography align="center" variant="body2" color="text.secondary">
