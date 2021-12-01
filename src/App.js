@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react"
+import { Typography, Box, Toolbar, AppBar, CssBaseline } from "@mui/material"
 import { initializePokemon } from "./reducers/pokemonReducer"
 import { useDispatch } from "react-redux"
 import PokemonGrid from "./components/PokemonGrid"
-import { Container, Typography } from "@mui/material"
 import PokemonTeam from "./components/PokemonTeam"
 import SideFilterMenu from "./components/SideFilterMenu"
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
 
 import IconButton from '@mui/material/IconButton';
 
@@ -24,7 +20,7 @@ const App = () => {
   }, [dispatch])
 
   const [mobileOpen, setMobileOpen] = useState(false)
-  const drawerWidth = 205
+  const drawerWidth = 160
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
@@ -64,10 +60,8 @@ const App = () => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        <Container>
-          <PokemonTeam />
-          <PokemonGrid />
-        </Container>
+        <PokemonTeam />
+        <PokemonGrid />
       </Box>
     </Box>
     

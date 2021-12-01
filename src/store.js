@@ -4,10 +4,12 @@ import thunk from "redux-thunk"
 
 import pokemonReducer from './reducers/pokemonReducer'
 import pokemonTeamReducer from './reducers/pokemonTeamReducer'
+import typeReducer from './reducers/typeReducer'
 
 const reducer = combineReducers({
   pokemon: pokemonReducer,
-  pokemonTeam: pokemonTeamReducer
+  pokemonTeam: pokemonTeamReducer,
+  types: typeReducer
 })
 
 const store = createStore(

@@ -6,7 +6,21 @@ import { addPokemon } from '../reducers/pokemonTeamReducer'
 
 const PokemonGrid = () => {
   const dispatch = useDispatch()
-  const pokemons = useSelector(state => state.pokemon)
+  const pokemonList = useSelector(state => state.pokemon)
+  const types = useSelector(state => state.types)
+
+  const isEitherTypeShown = (pokemon) => {
+    let shown = false
+    pokemon.types.forEach(pokemonType => {
+      const matchedType = types.find(type => type.name === pokemonType.type.name)
+      if (matchedType.shown === true) {
+        shown = true
+      }
+    })
+    return shown
+  }
+
+  const pokemonToShow = pokemonList.filter(pokemon => isEitherTypeShown(pokemon))
 
   return (
     <div>
@@ -14,7 +28,7 @@ const PokemonGrid = () => {
         Available:
       </Typography>
       <Grid container>
-        {pokemons.map(pokemon => 
+        {pokemonToShow.map(pokemon => 
           <Pokemon
             key={pokemon.id}
             pokemon={pokemon}
