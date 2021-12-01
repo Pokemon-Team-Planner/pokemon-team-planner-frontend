@@ -53,7 +53,7 @@ const drawer = (
   <div>
     <Toolbar />
     <Divider />
-      <Typography sx={{'marginLeft': '10px'}}>
+      <Typography variant="h6" sx={{'marginLeft': '10px'}}>
         Types:
       </Typography>
       {types.map((e) => {
@@ -66,7 +66,7 @@ const drawer = (
             defaultChecked
             inputProps={{ 'aria-label': e.name }}
             checkedIcon={<Component className={`${e.name} type-icon`} />}
-            icon={<Component className={`${e.name} type-icon`} style={{background: "lightgray"}} />}
+            icon={<Component className="type-icon" style={{background: "lightgray"}} />}
           />
         )
       })}

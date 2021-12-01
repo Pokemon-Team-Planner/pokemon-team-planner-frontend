@@ -24,7 +24,7 @@ const App = () => {
   }, [dispatch])
 
   const [mobileOpen, setMobileOpen] = useState(false)
-  const drawerWidth = 240
+  const drawerWidth = 205
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
