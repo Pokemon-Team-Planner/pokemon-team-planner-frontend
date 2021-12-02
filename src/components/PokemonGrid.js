@@ -12,7 +12,7 @@ const PokemonGrid = () => {
   const isEitherTypeShown = (pokemon) => {
     let shown = false
     pokemon.types.forEach(pokemonType => {
-      const matchedType = types.find(type => type.name === pokemonType.type.name)
+      let matchedType = types.find(type => type.name === pokemonType.type.name)
       if (matchedType.shown === true) {
         shown = true
       }

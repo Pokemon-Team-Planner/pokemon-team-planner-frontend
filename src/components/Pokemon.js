@@ -7,7 +7,7 @@ const Pokemon = ({ pokemon, handleClick }) => {
     <div>
       <Grid item key={pokemon.id} xs="auto" sm="auto" md="auto">
         <Card
-          sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: '9vw' }}
+          sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: '128px' }}
         >
           <CardActionArea onClick={handleClick}>
             <CardMedia

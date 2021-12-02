@@ -7,5 +7,14 @@ const get = async (id) => {
   return response.data
 }
 
-const exports = { get }
+const getRange = async (firstId, lastId) => {
+  const promiseArray = []
+  for (let id = firstId; id <= lastId; id++) {
+    promiseArray.push(get(id))
+  }
+  const response = await Promise.all(promiseArray)
+  return response
+}
+
+const exports = { get, getRange }
 export default exports

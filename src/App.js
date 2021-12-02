@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     console.log('Initializing pokemon')
-    dispatch(initializePokemon(1,9))
+    dispatch(initializePokemon(1,151))
     
   }, [dispatch])
 

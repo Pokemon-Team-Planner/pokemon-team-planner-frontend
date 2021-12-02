@@ -11,16 +11,11 @@ const reducer = (state = [], action) => {
 
 export const initializePokemon = (firstId, lastId) => {
   return async dispatch => {
-    let pokemon = []
-
-    for (let id = firstId; id <= lastId; id++) {
-      const data = await pokemonService.get(id)
-      pokemon.push(data)
-    }
+    const data = await pokemonService.getRange(firstId, lastId)
 
     dispatch({
       type: 'INIT',
-      data: pokemon
+      data
     })
   }
 }
