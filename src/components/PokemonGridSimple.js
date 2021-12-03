@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Typography } from '@mui/material'
 import { addPokemon } from '../reducers/pokemonTeamReducer'
 
-const PokemonGrid = () => {
+const PokemonGridSimple = () => {
   const dispatch = useDispatch()
   const pokemonList = useSelector(state => state.pokemon)
   const types = useSelector(state => state.types)
@@ -30,14 +30,16 @@ const PokemonGrid = () => {
           <img
             key={pokemon.id}
             src={pokemon.sprites.front_default}
-            alt={`${pokemon.name}`}
+            alt={pokemon.name}
+            title={`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
             onClick={() => 
               dispatch(addPokemon(pokemon))
             }
-         />
+            loading="lazy"
+          />
         )}
     </div>
   )
 }
 
-export default PokemonGrid
+export default PokemonGridSimple
