@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import { Typography, Box, Toolbar, AppBar, CssBaseline } from "@mui/material"
 import { initializePokemon } from "./reducers/pokemonReducer"
 import { useDispatch } from "react-redux"
-import PokemonGrid from "./components/PokemonGrid"
+//import PokemonGrid from "./components/PokemonGrid"
+import PokemonGridSimple from "./components/PokemonGridSimple"
 import PokemonTeam from "./components/PokemonTeam"
 import SideFilterMenu from "./components/SideFilterMenu"
 
@@ -61,7 +62,7 @@ const App = () => {
       >
         <Toolbar />
         <PokemonTeam />
-        <PokemonGrid />
+        <PokemonGridSimple />
       </Box>
     </Box>
     
