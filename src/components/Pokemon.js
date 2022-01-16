@@ -22,7 +22,7 @@ const Pokemon = ({ pokemon, handleClick }) => {
                 marginLeft: "auto",
                 marginRight: "auto"
               }}
-              src={pokemon.sprites.front_default}
+              src={pokemon.sprite}
               alt={`${pokemon.name}`}
             />
           <CardContent>
@@ -31,7 +31,7 @@ const Pokemon = ({ pokemon, handleClick }) => {
             </Typography>
             <Typography align="center" variant="body2" color="text.secondary">
               {`${pokemon.types.map( e => 
-                e.type.name
+                e.name
               ).join(', ')}`}
             </Typography>
           </CardContent>

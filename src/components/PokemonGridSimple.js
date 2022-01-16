@@ -11,7 +11,7 @@ const PokemonGridSimple = () => {
   const isEitherTypeShown = (pokemon) => {
     let shown = false
     pokemon.types.forEach(pokemonType => {
-      let matchedType = types.find(type => type.name === pokemonType.type.name)
+      let matchedType = types.find(type => type.name === pokemonType.name)
       if (matchedType.shown === true) {
         shown = true
       }
@@ -29,7 +29,7 @@ const PokemonGridSimple = () => {
         {pokemonToShow.map(pokemon => 
           <img
             key={pokemon.id}
-            src={pokemon.sprites.front_default}
+            src={pokemon.sprite}
             alt={pokemon.name}
             title={`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
             onClick={() => 

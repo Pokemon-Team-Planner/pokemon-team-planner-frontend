@@ -11,16 +11,13 @@ const reducer = (state = [], action) => {
 
 export const initializePokemon = (firstId, lastId) => {
   return async dispatch => {
-    const data = await pokemonService.getRange(firstId, lastId)
-    const dataSet = data.map(pokemon => (
-      {id: pokemon.id, name: pokemon.name, types: pokemon.types, sprites: pokemon.sprites}
-    ))
+    const data = await pokemonService.get("firered-pokedex.json")
 
-    console.log('dataset',dataSet)
+    console.log('data',data)
 
     dispatch({
       type: 'INIT',
-      data: dataSet
+      data: data
     })
   }
 }

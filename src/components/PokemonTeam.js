@@ -15,14 +15,10 @@ const PokemonTeam = () => {
     id: 0,
     uniqueId: uuidv4(),
     name: "?",
-    sprites: {
-      front_default: `${questionMarkSprite}`
-    },
+    sprite: `${questionMarkSprite}`,
     types: [
       {
-        type: {
-          name: "?"
-        }
+        name: "?"
       }
     ]
   }
