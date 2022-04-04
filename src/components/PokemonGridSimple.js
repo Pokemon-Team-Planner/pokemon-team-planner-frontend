@@ -27,7 +27,7 @@ const PokemonGridSimple = () => {
         Available:
       </Typography>
         {pokemonToShow.map(pokemon => 
-          <Button style={{ padding: 0, borderRadius: "16px" }}>
+          <Button style={{ padding: 0, borderRadius: "16px" }} key={pokemon.id}>
             <img
               key={pokemon.id}
               src={pokemon.sprite}
