@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Typography } from '@mui/material'
+import { Typography, Button } from '@mui/material'
 import { addPokemon } from '../reducers/pokemonTeamReducer'
 
 const PokemonGridSimple = () => {
@@ -27,16 +27,18 @@ const PokemonGridSimple = () => {
         Available:
       </Typography>
         {pokemonToShow.map(pokemon => 
-          <img
-            key={pokemon.id}
-            src={pokemon.sprite}
-            alt={pokemon.name}
-            title={`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
-            onClick={() => 
-              dispatch(addPokemon(pokemon))
-            }
-            loading="lazy"
-          />
+          <Button style={{ padding: 0, borderRadius: "16px" }}>
+            <img
+              key={pokemon.id}
+              src={pokemon.sprite}
+              alt={pokemon.name}
+              title={`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
+              onClick={() => 
+                dispatch(addPokemon(pokemon))
+              }
+              loading="lazy"
+            />
+          </Button>
         )}
     </div>
   )
