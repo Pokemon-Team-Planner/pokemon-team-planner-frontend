@@ -10,6 +10,8 @@ import SideFilterMenu from "./components/SideFilterMenu"
 import IconButton from '@mui/material/IconButton';
 
 import MenuIcon from '@mui/icons-material/Menu';
+import Login from "./components/Login"
+import loginService from './services/login'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -24,6 +26,26 @@ const App = () => {
   const drawerWidth = 160
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
+  }
+
+  const [username, setUsername] = useState('') 
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+
+    try {
+      const user = await loginService.login({
+        username, password,
+      })
+      setUser(user)
+      setUsername('')
+      setPassword('')
+      console.log(user)
+    } catch (exception) {
+      console.log(exception)
+    }
   }
 
   return (
@@ -61,6 +83,13 @@ const App = () => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
+        {user === null && (<Login
+          handleLogin={handleLogin}
+          username={username}
+          password={password}
+          setUsername={setUsername}
+          setPassword={setPassword}
+        />)}
         <PokemonTeam />
         <PokemonGridSimple />
       </Box>
