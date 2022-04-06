@@ -11,7 +11,6 @@ import IconButton from '@mui/material/IconButton';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import Login from "./components/Login"
-import loginService from './services/login'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -28,23 +27,7 @@ const App = () => {
     setMobileOpen(!mobileOpen)
   }
 
-  const [user, setUser] = useState(null)
-
-  const loginCredentials = useSelector(state => state.loginCredentials)
-
-  const handleLogin = async (event) => {
-    event.preventDefault()
-
-    try {
-      const user = await loginService.login(loginCredentials)
-      setUser(user)
-      dispatch({ type: 'SET_USERNAME', data: '' })
-      dispatch({ type: 'SET_PASSWORD', data: '' })
-      console.log(user)
-    } catch (exception) {
-      console.log(exception)
-    }
-  }
+  const user = useSelector(state => state.user)
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -81,9 +64,7 @@ const App = () => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        {user === null && (<Login
-          handleLogin={handleLogin}
-        />)}
+        {user === null && <Login />}
         <PokemonTeam />
         <PokemonGridSimple />
       </Box>
