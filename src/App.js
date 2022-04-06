@@ -50,7 +50,7 @@ const App = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" noWrap component="div">
-          Pokemon Team Builder
+          Pokemon Team Planner
           </Typography>
         </Toolbar>
       </AppBar>
