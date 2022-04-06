@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Typography, Box, Toolbar, AppBar, CssBaseline } from "@mui/material"
 import { initializePokemon } from "./reducers/pokemonReducer"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 //import PokemonGrid from "./components/PokemonGrid"
 import PokemonGridSimple from "./components/PokemonGridSimple"
 import PokemonTeam from "./components/PokemonTeam"
@@ -28,20 +28,18 @@ const App = () => {
     setMobileOpen(!mobileOpen)
   }
 
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
+
+  const loginCredentials = useSelector(state => state.loginCredentials)
 
   const handleLogin = async (event) => {
     event.preventDefault()
 
     try {
-      const user = await loginService.login({
-        username, password,
-      })
+      const user = await loginService.login(loginCredentials)
       setUser(user)
-      setUsername('')
-      setPassword('')
+      dispatch({ type: 'SET_USERNAME', data: '' })
+      dispatch({ type: 'SET_PASSWORD', data: '' })
       console.log(user)
     } catch (exception) {
       console.log(exception)
@@ -85,10 +83,6 @@ const App = () => {
         <Toolbar />
         {user === null && (<Login
           handleLogin={handleLogin}
-          username={username}
-          password={password}
-          setUsername={setUsername}
-          setPassword={setPassword}
         />)}
         <PokemonTeam />
         <PokemonGridSimple />
