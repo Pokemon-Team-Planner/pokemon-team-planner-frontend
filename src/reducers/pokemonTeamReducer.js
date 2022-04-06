@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 
-const reducer = (state = [], action) => {
+const pokemonTeamReducer = (state = [], action) => {
   switch (action.type) {
     case 'INIT_POKEMONTEAM':
       return action.data
@@ -29,4 +29,4 @@ export const removePokemon = (data) => {
   }
 }
 
-export default reducer
+export default pokemonTeamReducer

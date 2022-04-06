@@ -1,6 +1,6 @@
 import pokemonService from '../services/pokemon'
 
-const reducer = (state = [], action) => {
+const pokemonReducer = (state = [], action) => {
   switch (action.type) {
     case 'INIT':
       return action.data
@@ -22,4 +22,4 @@ export const initializePokemon = (firstId, lastId) => {
   }
 }
 
-export default reducer
+export default pokemonReducer

@@ -20,7 +20,7 @@ const initialState = [
   {name: "fairy", component: 'Fairy', shown: true}
 ]
 
-const reducer = (state = initialState, action) => {
+const typeReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'TOGGLE_TYPE_FILTER':
       return state.map(type =>
@@ -60,4 +60,4 @@ export const setTypeFilterNone = () => {
   }
 }
 
-export default reducer
+export default typeReducer

@@ -1,4 +1,4 @@
-const reducer = (state = {username: '', password: ''}, action) => {
+const loginCredentialsReducer = (state = {username: '', password: ''}, action) => {
   switch (action.type) {
     case 'SET_USERNAME':
       return {...state, username: action.data}
@@ -9,4 +9,4 @@ const reducer = (state = {username: '', password: ''}, action) => {
   }
 }
 
-export default reducer
+export default loginCredentialsReducer
