@@ -1,4 +1,4 @@
-const loginCredentialsReducer = (state = {username: '', password: ''}, action) => {
+const loginCredentialsReducer = (state = {username: 'admin1', password: 'salainen_on'}, action) => {
   switch (action.type) {
     case 'SET_USERNAME':
       return {...state, username: action.data}
