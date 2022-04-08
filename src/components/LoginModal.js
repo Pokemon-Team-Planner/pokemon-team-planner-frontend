@@ -3,16 +3,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import loginService from '../services/login'
 import Modal from '@mui/material/Modal'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import IconButton from '@mui/material/IconButton'
 import { Box, Paper, Typography, Stack, Avatar, Button, TextField } from '@mui/material'
 
 export default function BasicModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   const dispatch = useDispatch()
   const loginCredentials = useSelector(state => state.loginCredentials)
+  const user = useSelector(state => state.user)
+
+  const handleLogout = () => {
+    dispatch({ type: 'SET_USER', data: null })
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -25,6 +31,40 @@ export default function BasicModal() {
     } catch (exception) {
       console.log(exception)
     }
+  }
+
+  if (user) {
+    return (
+      <div>
+        <IconButton
+          color="inherit"
+          aria-label="open log out"
+          edge="end"
+          onClick={handleOpen}
+        >
+          <AccountCircleOutlinedIcon />
+        </IconButton>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="Logged in user"
+          aria-describedby="Info and logout button for logged in user"
+        >
+          <Box sx={{ width: 300, margin: '20px auto' }}>
+            <Paper elevation={10} sx={{ padding: 6 }}>
+              <Stack direction="column" justifyContent="flex-start" alignItems="center" spacing={2}>
+                <Avatar sx={{ bgcolor: 'primary.main' }}>
+                  <AccountCircleOutlinedIcon />
+                </Avatar>
+                <Typography>{user.name}</Typography>
+                <Typography variant='h5'>Logged in</Typography>
+                <Button onClick={handleLogout} sx={{ margin: "8px 0" }} variant="contained" fullWidth>log out</Button>
+              </Stack>
+            </Paper>
+          </Box>
+        </Modal>
+      </div>
+    )
   }
 
   return (
@@ -40,8 +80,8 @@ export default function BasicModal() {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="Login"
+        aria-describedby="Login form"
       >
         <Box sx={{ width: 300, margin: '20px auto' }}>
           <Paper elevation={10} sx={{ padding: 6 }}> 
