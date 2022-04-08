@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { Typography, Box, Toolbar, AppBar, CssBaseline } from "@mui/material"
 import { initializePokemon } from "./reducers/pokemonReducer"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 //import PokemonGrid from "./components/PokemonGrid"
 import PokemonGridSimple from "./components/PokemonGridSimple"
 import PokemonTeam from "./components/PokemonTeam"
 import SideFilterMenu from "./components/SideFilterMenu"
+import LoginModal from "./components/LoginModal"
 
-import IconButton from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton'
 
-import MenuIcon from '@mui/icons-material/Menu';
-import Login from "./components/Login"
+import MenuIcon from '@mui/icons-material/Menu'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -27,8 +27,6 @@ const App = () => {
     setMobileOpen(!mobileOpen)
   }
 
-  const user = useSelector(state => state.user)
-
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -39,7 +37,7 @@ const App = () => {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
+        <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -52,6 +50,7 @@ const App = () => {
           <Typography variant="h5" noWrap component="div">
           Pokemon Team Planner
           </Typography>
+          <LoginModal />
         </Toolbar>
       </AppBar>
       <SideFilterMenu
@@ -64,7 +63,6 @@ const App = () => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        {user === null && <Login />}
         <PokemonTeam />
         <PokemonGridSimple />
       </Box>
