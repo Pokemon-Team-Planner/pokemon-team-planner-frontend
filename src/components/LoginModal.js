@@ -6,6 +6,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import IconButton from '@mui/material/IconButton'
 import { Box, Paper, Typography, Stack, Avatar, Button, TextField } from '@mui/material'
+import teamService from '../services/team'
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false)
@@ -25,6 +26,7 @@ export default function BasicModal() {
 
     try {
       const user = await loginService.login(loginCredentials)
+      teamService.setToken(user.token)
       dispatch({ type: 'SET_USER', data: user })
       dispatch({ type: 'SET_USERNAME', data: '' })
       dispatch({ type: 'SET_PASSWORD', data: '' })
