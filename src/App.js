@@ -7,6 +7,7 @@ import PokemonGridSimple from "./components/PokemonGridSimple"
 import PokemonTeam from "./components/PokemonTeam"
 import SideFilterMenu from "./components/SideFilterMenu"
 import LoginModal from "./components/LoginModal"
+import Notification from "./components/Notification"
 
 import IconButton from '@mui/material/IconButton'
 
@@ -63,6 +64,7 @@ const App = () => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
+        <Notification />
         <PokemonTeam />
         <PokemonGridSimple />
       </Box>

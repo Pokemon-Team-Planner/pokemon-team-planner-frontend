@@ -7,6 +7,7 @@ import { removePokemon } from '../reducers/pokemonTeamReducer'
 import { v4 as uuidv4 } from 'uuid';
 import questionMarkSprite from '../assets/question-mark.png'
 import teamService from '../services/team'
+import { deleteNotification, setNotification } from '../reducers/notificationReducer'
 
 const PokemonTeam = () => {
   const dispatch = useDispatch()
@@ -30,16 +31,21 @@ const PokemonTeam = () => {
     emptyTeamMembers.push(<Pokemon key={emptyTeamMember.uniqueId} pokemon={emptyTeamMember} />)
   }
 
-  const handleSave = () => {
-    const team = pokemonTeam.map(pokemon => {
+  const createTeam = async () => {
+    const pokemonIDs = pokemonTeam.map(pokemon => {
       return { pokemonID: pokemon.id }
     })
 
     const data = {
       gameVersionPokedex: "firered-pokedex.json",
-      team
+      team: pokemonIDs
     }
-    teamService.create(data)
+    await teamService.create(data)
+
+    dispatch(setNotification('a new team added', 'success'))
+    setTimeout(() => {
+      dispatch(deleteNotification())
+    }, 5000)
   }
 
   return (
@@ -57,7 +63,7 @@ const PokemonTeam = () => {
         )}
         {emptyTeamMembers}
       </Grid>
-      <Button onClick={handleSave}>Save</Button>
+      <Button onClick={createTeam}>create</Button>
     </Box>
   )
 }

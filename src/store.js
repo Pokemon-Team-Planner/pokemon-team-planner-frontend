@@ -7,13 +7,15 @@ import pokemonTeamReducer from './reducers/pokemonTeamReducer'
 import typeReducer from './reducers/typeReducer'
 import loginCredentialsReducer from './reducers/loginCredentialsReducer'
 import userReducer from './reducers/userReducer'
+import notificationReducer from "./reducers/notificationReducer"
 
 const reducer = combineReducers({
   pokemon: pokemonReducer,
   pokemonTeam: pokemonTeamReducer,
   types: typeReducer,
   loginCredentials: loginCredentialsReducer,
-  user: userReducer
+  user: userReducer,
+  notification: notificationReducer
 })
 
 const store = createStore(
