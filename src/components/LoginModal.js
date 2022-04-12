@@ -26,6 +26,10 @@ export default function BasicModal() {
 
     try {
       const user = await loginService.login(loginCredentials)
+
+      window.localStorage.setItem(
+        'loggedPokemonTeamPlannerUser', JSON.stringify(user)
+      ) 
       teamService.setToken(user.token)
       dispatch({ type: 'SET_USER', data: user })
       dispatch({ type: 'SET_USERNAME', data: '' })

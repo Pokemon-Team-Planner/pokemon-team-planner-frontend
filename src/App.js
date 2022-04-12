@@ -8,6 +8,7 @@ import PokemonTeam from "./components/PokemonTeam"
 import SideFilterMenu from "./components/SideFilterMenu"
 import LoginModal from "./components/LoginModal"
 import Notification from "./components/Notification"
+import teamService from "./services/team"
 
 import IconButton from '@mui/material/IconButton'
 
@@ -20,6 +21,15 @@ const App = () => {
     console.log('Initializing pokemon')
     dispatch(initializePokemon(1,151))
     
+  }, [dispatch])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedPokemonTeamPlannerUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      dispatch({ type: 'SET_USER', data: user })
+      teamService.setToken(user.token)
+    }
   }, [dispatch])
 
   const [mobileOpen, setMobileOpen] = useState(false)
