@@ -17,7 +17,10 @@ export default function BasicModal() {
   const loginCredentials = useSelector(state => state.loginCredentials)
   const user = useSelector(state => state.user)
 
+  const tokenName = 'loggedPokemonTeamPlannerUser'
+
   const handleLogout = () => {
+    window.localStorage.removeItem(tokenName)
     dispatch({ type: 'SET_USER', data: null })
   }
 
@@ -28,7 +31,7 @@ export default function BasicModal() {
       const user = await loginService.login(loginCredentials)
 
       window.localStorage.setItem(
-        'loggedPokemonTeamPlannerUser', JSON.stringify(user)
+        tokenName, JSON.stringify(user)
       ) 
       teamService.setToken(user.token)
       dispatch({ type: 'SET_USER', data: user })
