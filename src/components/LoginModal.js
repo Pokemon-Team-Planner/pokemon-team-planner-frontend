@@ -17,7 +17,7 @@ export default function BasicModal() {
   const loginCredentials = useSelector(state => state.loginCredentials)
   const user = useSelector(state => state.user)
 
-  const tokenName = 'loggedPokemonTeamPlannerUser'
+  const tokenName = process.env.REACT_APP_LOCAL_STORAGE_TOKEN_KEY
 
   const handleLogout = () => {
     window.localStorage.removeItem(tokenName)

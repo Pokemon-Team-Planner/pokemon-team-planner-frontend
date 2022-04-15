@@ -24,7 +24,9 @@ const App = () => {
   }, [dispatch])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedPokemonTeamPlannerUser')
+    const loggedUserJSON = window.localStorage.getItem(
+      process.env.REACT_APP_LOCAL_STORAGE_TOKEN_KEY
+    )
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       dispatch({ type: 'SET_USER', data: user })
@@ -59,7 +61,7 @@ const App = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" noWrap component="div">
-          Pokemon Team Planner
+            {process.env.REACT_APP_NAME}
           </Typography>
           <LoginModal />
         </Toolbar>
