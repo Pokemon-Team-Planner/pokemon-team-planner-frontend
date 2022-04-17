@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Typography, Box, Toolbar, AppBar, CssBaseline } from "@mui/material"
 import { initializePokemon } from "./reducers/pokemonReducer"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 //import PokemonGrid from "./components/PokemonGrid"
 import PokemonGridSimple from "./components/PokemonGridSimple"
 import PokemonTeam from "./components/PokemonTeam"
@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 const App = () => {
   const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
 
   useEffect(() => {
     console.log('Initializing pokemon')
@@ -24,15 +25,10 @@ const App = () => {
   }, [dispatch])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem(
-      process.env.REACT_APP_LOCAL_STORAGE_TOKEN_KEY
-    )
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      dispatch({ type: 'SET_USER', data: user })
+    if (user) {
       teamService.setToken(user.token)
     }
-  }, [dispatch])
+  }, [user])
 
   const [mobileOpen, setMobileOpen] = useState(false)
   const drawerWidth = 160

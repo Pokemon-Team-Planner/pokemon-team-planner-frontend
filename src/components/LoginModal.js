@@ -17,11 +17,9 @@ export default function BasicModal() {
   const loginCredentials = useSelector(state => state.loginCredentials)
   const user = useSelector(state => state.user)
 
-  const tokenName = process.env.REACT_APP_LOCAL_STORAGE_TOKEN_KEY
-
   const handleLogout = () => {
-    window.localStorage.removeItem(tokenName)
     dispatch({ type: 'SET_USER', data: null })
+    teamService.setToken(null)
   }
 
   const handleLogin = async (event) => {
@@ -30,9 +28,6 @@ export default function BasicModal() {
     try {
       const user = await loginService.login(loginCredentials)
 
-      window.localStorage.setItem(
-        tokenName, JSON.stringify(user)
-      ) 
       teamService.setToken(user.token)
       dispatch({ type: 'SET_USER', data: user })
       dispatch({ type: 'SET_USERNAME', data: '' })
