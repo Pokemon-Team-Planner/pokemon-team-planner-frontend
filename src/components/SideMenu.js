@@ -1,14 +1,13 @@
 import React from 'react'
 import { Box, Drawer, Toolbar, Divider } from '@mui/material'
 import TypeFilter from './TypeFilter'
-//import List from '@mui/material/List'
-//import ListItem from '@mui/material/ListItem'
-//import ListItemText from '@mui/material/ListItemText'
+import Navigation from './Navigation'
 
 const drawer = (
   <div>
     <Toolbar />
     <Divider />
+    <Navigation />
     <TypeFilter />
   </div>
 )

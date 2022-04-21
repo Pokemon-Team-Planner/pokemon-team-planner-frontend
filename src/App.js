@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux"
 //import PokemonGrid from "./components/PokemonGrid"
 import PokemonGridSimple from "./components/PokemonGridSimple"
 import PokemonTeam from "./components/PokemonTeam"
-import SideFilterMenu from "./components/SideFilterMenu"
+import SideMenu from "./components/SideMenu"
 import LoginModal from "./components/LoginModal"
 import Notification from "./components/Notification"
+import Teams from "./components/Teams"
 import teamService from "./services/team"
+import { Routes, Route } from "react-router-dom"
 
 import IconButton from '@mui/material/IconButton'
 
@@ -62,7 +64,7 @@ const App = () => {
           <LoginModal />
         </Toolbar>
       </AppBar>
-      <SideFilterMenu
+      <SideMenu
         drawerWidth={drawerWidth}
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
@@ -73,8 +75,12 @@ const App = () => {
       >
         <Toolbar />
         <Notification />
-        <PokemonTeam />
-        <PokemonGridSimple />
+
+        <Routes>
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/" element={<><PokemonTeam /><PokemonGridSimple /></>} />
+        </Routes>
+        
       </Box>
     </Box>
     
