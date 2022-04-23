@@ -2,7 +2,7 @@ import pokemonService from '../services/pokemon'
 
 const pokemonReducer = (state = [], action) => {
   switch (action.type) {
-    case 'INIT':
+    case 'INIT_POKEMON':
       return action.data
     default:
       return state
@@ -16,7 +16,7 @@ export const initializePokemon = (firstId, lastId) => {
     console.log('data',data)
 
     dispatch({
-      type: 'INIT',
+      type: 'INIT_POKEMON',
       data: data
     })
   }

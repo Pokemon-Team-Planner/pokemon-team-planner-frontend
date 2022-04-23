@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Typography, Box, Toolbar, AppBar, CssBaseline } from "@mui/material"
 import { initializePokemon } from "./reducers/pokemonReducer"
+import { initializeTeams } from './reducers/teamsReducer'
 import { useDispatch, useSelector } from "react-redux"
 //import PokemonGrid from "./components/PokemonGrid"
 import PokemonGridSimple from "./components/PokemonGridSimple"
@@ -24,6 +25,11 @@ const App = () => {
     console.log('Initializing pokemon')
     dispatch(initializePokemon(1,151))
     
+  }, [dispatch])
+
+  useEffect(() => {
+    console.log('Initializing teams')
+    dispatch(initializeTeams())
   }, [dispatch])
 
   useEffect(() => {
