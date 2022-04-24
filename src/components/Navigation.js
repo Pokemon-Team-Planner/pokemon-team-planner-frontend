@@ -31,6 +31,7 @@ export default function ListRouter() {
           {menuItems.map(item => (
             <ListItem
               button
+              key={item.text}
               onClick={() => navigate(item.path)}
               sx={{ background: location.pathname === item.path ? '#f4f4f4' : 'transparent' }}
             >
