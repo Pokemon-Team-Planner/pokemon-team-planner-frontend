@@ -2,7 +2,7 @@ import React from 'react'
 import { List, ListItem, Button, Grid } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import DeleteIcon from '@mui/icons-material/Delete'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 const Teams = () => {
   const teams = useSelector(state => state.teams)
@@ -31,7 +31,7 @@ const Teams = () => {
                 )
               })}
             </ListItem>
-            <Button onClick={() => alert('are you sure?')}><DeleteIcon /></Button>
+            <Button onClick={() => alert('are you sure?')}><DeleteOutlineOutlinedIcon /></Button>
           </Grid>
         ))}
       </List>
