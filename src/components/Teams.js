@@ -22,8 +22,8 @@ const Teams = () => {
     <div>
       <List>
         {teams.map(item => (
-          <Grid container direction="row" alignItems="center">
-            <ListItem sx={{ width: '475px' }} button key={item.id} onClick={() => handleClick(`/team/${item.id}`)}>
+          <Grid key={item.id} container direction="row" alignItems="center">
+            <ListItem sx={{ width: '475px' }} button onClick={() => handleClick(`/team/${item.id}`)}>
               {item.team.map(item => {
                 const pokemon = getPokemonForID(item.pokemonID)
                 return (
