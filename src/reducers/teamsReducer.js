@@ -4,6 +4,8 @@ const teamsReducer = (state = [], action) => {
   switch (action.type) {
     case 'INIT_TEAMS':
       return action.data
+    case 'DELETE_TEAM':
+      return state.filter(team => team.id !== action.data)
     default:
       return state
   }
@@ -19,6 +21,13 @@ export const initializeTeams = () => {
       type: 'INIT_TEAMS',
       data: data
     })
+  }
+}
+
+export const deleteTeam = (id) => {
+  return {
+      type: 'DELETE_TEAM',
+      data: id
   }
 }
 
