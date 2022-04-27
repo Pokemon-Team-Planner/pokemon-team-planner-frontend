@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Pokemon from './Pokemon'
+import Pokemon from '../components/Pokemon'
 import { Grid, Typography } from '@mui/material'
 import { addPokemon } from '../reducers/pokemonTeamReducer'
 
