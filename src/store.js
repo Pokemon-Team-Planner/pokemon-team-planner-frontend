@@ -11,6 +11,7 @@ import loginCredentialsReducer from './reducers/loginCredentialsReducer'
 import userReducer from './reducers/userReducer'
 import notificationReducer from "./reducers/notificationReducer"
 import teamsReducer from "./reducers/teamsReducer"
+import onlyExclusiveReducer from "./reducers/onlyExclusiveReducer"
 
 const reducer = combineReducers({
   pokemon: pokemonReducer,
@@ -19,7 +20,8 @@ const reducer = combineReducers({
   loginCredentials: loginCredentialsReducer,
   user: userReducer,
   notification: notificationReducer,
-  teams: teamsReducer
+  teams: teamsReducer,
+  onlyExclusive: onlyExclusiveReducer
 })
 
 const persistConfig = {

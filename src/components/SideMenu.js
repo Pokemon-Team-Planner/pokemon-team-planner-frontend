@@ -1,22 +1,31 @@
 import React from 'react'
-import { Box, Drawer, Toolbar, Divider } from '@mui/material'
+import { Box, Drawer, Toolbar, Divider, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import TypeFilter from './TypeFilter'
 import Navigation from './Navigation'
 import { useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
-const drawer = (location) => {
+const drawer = ({ location, dispatch, drawerWidth }) => {
   return (
     <div>
       <Toolbar />
       <Divider />
       <Navigation />
       { location.pathname === '/' ? <TypeFilter /> : null }
+      <FormGroup sx={{ padding: 1}}>
+        <FormControlLabel control={
+            <Switch onChange={() => dispatch({ type: 'TOGGLE_ONLY_EXCLUSIVE', data: null })} />
+          }
+          label="only exclusive"
+        />
+      </FormGroup>
     </div>
   )
 } 
 
 const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
   const location = useLocation()
+  const dispatch = useDispatch()
 
   return (
     <div>
@@ -38,7 +47,7 @@ const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, overflowX: 'hidden' },
           }}
         >
-          {drawer(location)}
+          {drawer({ location, dispatch, drawerWidth })}
         </Drawer>
         <Drawer
           variant="permanent"
@@ -48,7 +57,7 @@ const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
           }}
           open
         >
-          {drawer(location)}
+          {drawer({ location, dispatch, drawerWidth })}
         </Drawer>
       </Box>
     </div>

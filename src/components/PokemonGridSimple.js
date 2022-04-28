@@ -7,6 +7,7 @@ const PokemonGridSimple = () => {
   const dispatch = useDispatch()
   const pokemonList = useSelector(state => state.pokemon)
   const types = useSelector(state => state.types)
+  const onlyExclusive = useSelector(state => state.onlyExclusive)
 
   const isEitherTypeShown = (pokemon) => {
     let shown = false
@@ -19,7 +20,11 @@ const PokemonGridSimple = () => {
     return shown
   }
 
-  const pokemonToShow = pokemonList.filter(pokemon => isEitherTypeShown(pokemon))
+  let pokemonToShow = pokemonList.filter(pokemon => isEitherTypeShown(pokemon))
+
+  if (onlyExclusive) {
+    pokemonToShow = pokemonToShow.filter(pokemon => pokemon.is_exclusive === true)
+  }
 
   return (
     <div>
