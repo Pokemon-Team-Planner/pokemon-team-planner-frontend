@@ -2,17 +2,22 @@ import React from 'react'
 import { Box, Drawer, Toolbar, Divider } from '@mui/material'
 import TypeFilter from './TypeFilter'
 import Navigation from './Navigation'
+import { useLocation } from 'react-router-dom'
 
-const drawer = (
-  <div>
-    <Toolbar />
-    <Divider />
-    <Navigation />
-    <TypeFilter />
-  </div>
-)
+const drawer = (location) => {
+  return (
+    <div>
+      <Toolbar />
+      <Divider />
+      <Navigation />
+      { location.pathname === '/' ? <TypeFilter /> : null }
+    </div>
+  )
+} 
 
 const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
+  const location = useLocation()
+
   return (
     <div>
       <Box
@@ -33,7 +38,7 @@ const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-          {drawer}
+          {drawer(location)}
         </Drawer>
         <Drawer
           variant="permanent"
@@ -43,7 +48,7 @@ const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
           }}
           open
         >
-          {drawer}
+          {drawer(location)}
         </Drawer>
       </Box>
     </div>
