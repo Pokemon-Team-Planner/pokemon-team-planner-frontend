@@ -40,12 +40,20 @@ const PokemonTeam = () => {
       gameVersionPokedex: "firered-pokedex.json",
       team: pokemonIDs
     }
-    await teamService.create(data)
+    
+    try {
+      await teamService.create(data)
 
-    dispatch(setNotification('a new team added', 'success'))
-    setTimeout(() => {
-      dispatch(deleteNotification())
-    }, 5000)
+      dispatch(setNotification('a new team added', 'success'))
+      setTimeout(() => {
+        dispatch(deleteNotification())
+      }, 5000)
+    } catch (error) {
+      dispatch(setNotification(`team creation failed: ${error.message}`, 'error'))
+      setTimeout(() => {
+        dispatch(deleteNotification())
+      }, 5000)
+    }
   }
 
   return (
