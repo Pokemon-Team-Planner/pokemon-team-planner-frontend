@@ -35,7 +35,7 @@ const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, overflowX: 'hidden' },
           }}
         >
           {drawer(location)}
@@ -44,7 +44,7 @@ const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, overflowX: 'hidden' },
           }}
           open
         >
