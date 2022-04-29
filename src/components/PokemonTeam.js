@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import questionMarkSprite from '../assets/question-mark.png'
 import teamService from '../services/team'
 import { useNotification } from '../hooks'
+import { addTeam } from '../reducers/teamsReducer'
 
 const PokemonTeam = () => {
   const dispatch = useDispatch()
@@ -43,7 +44,8 @@ const PokemonTeam = () => {
     }
 
     try {
-      await teamService.create(data)
+      const response = await teamService.create(data)
+      dispatch(addTeam(response))
       notification.send('a new team added', 'success')
     } catch (error) {
       notification.send(`team creation failed: ${error.message}`, 'error')
