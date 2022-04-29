@@ -2,12 +2,23 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Typography, Button } from '@mui/material'
 import { addPokemon } from '../reducers/pokemonTeamReducer'
+import { useNotification } from '../hooks'
 
 const PokemonGridSimple = () => {
   const dispatch = useDispatch()
   const pokemonList = useSelector(state => state.pokemon)
   const types = useSelector(state => state.types)
   const onlyExclusive = useSelector(state => state.onlyExclusive)
+  const notification = useNotification()
+
+  const handleClick = (pokemon) => {
+    dispatch(addPokemon(pokemon))
+    notification.send(
+      `${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)} added to team`,
+      'success',
+      2000
+    )
+  }
 
   const isEitherTypeShown = (pokemon) => {
     let shown = false
@@ -38,9 +49,7 @@ const PokemonGridSimple = () => {
               src={pokemon.sprite}
               alt={pokemon.name}
               title={`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
-              onClick={() => 
-                dispatch(addPokemon(pokemon))
-              }
+              onClick={() => handleClick(pokemon)}
               loading="lazy"
             />
           </Button>
