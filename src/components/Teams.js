@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import teamService from '../services/team'
 import { deleteTeam } from '../reducers/teamsReducer'
-import { deleteNotification, setNotification } from '../reducers/notificationReducer'
+import { useNotification } from '../hooks'
 
 const Teams = () => {
   const teams = useSelector(state => state.teams)
   const pokemon = useSelector(state => state.pokemon)
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
+  const notification = useNotification()
 
   const handleClick = (path) => {
     navigate(path)
@@ -27,16 +27,10 @@ const Teams = () => {
       await teamService.remove(id)
       dispatch(deleteTeam(id))
 
-      dispatch(setNotification('team deleted', 'success'))
-      setTimeout(() => {
-        dispatch(deleteNotification())
-      }, 5000)
+      notification.send('team deleted', 'success')
     } catch (error) {
       console.error(error)
-      dispatch(setNotification(`team deletion failed: ${error.message}`, 'error'))
-      setTimeout(() => {
-        dispatch(deleteNotification())
-      }, 5000)
+      notification.send(`team deletion failed: ${error.message}`, 'error')
     }
   }
 

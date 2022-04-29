@@ -7,11 +7,12 @@ import { removePokemon } from '../reducers/pokemonTeamReducer'
 import { v4 as uuidv4 } from 'uuid';
 import questionMarkSprite from '../assets/question-mark.png'
 import teamService from '../services/team'
-import { deleteNotification, setNotification } from '../reducers/notificationReducer'
+import { useNotification } from '../hooks'
 
 const PokemonTeam = () => {
   const dispatch = useDispatch()
   const pokemonTeam = useSelector(state => state.pokemonTeam)
+  const notification = useNotification()
 
   const missingPokemon = {
     id: 0,
@@ -40,19 +41,12 @@ const PokemonTeam = () => {
       gameVersionPokedex: "firered-pokedex.json",
       team: pokemonIDs
     }
-    
+
     try {
       await teamService.create(data)
-
-      dispatch(setNotification('a new team added', 'success'))
-      setTimeout(() => {
-        dispatch(deleteNotification())
-      }, 5000)
+      notification.send('a new team added', 'success')
     } catch (error) {
-      dispatch(setNotification(`team creation failed: ${error.message}`, 'error'))
-      setTimeout(() => {
-        dispatch(deleteNotification())
-      }, 5000)
+      notification.send(`team creation failed: ${error.message}`, 'error')
     }
   }
 
