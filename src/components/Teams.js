@@ -14,8 +14,8 @@ const Teams = () => {
   const navigate = useNavigate()
   const notification = useNotification()
 
-  const handleClick = (path) => {
-    navigate(path)
+  const handleClick = (id) => {
+    navigate(`/teams/${id}`)
   }
 
   const getPokemonForID = (id) => {
@@ -39,7 +39,7 @@ const Teams = () => {
       <List>
         {teams.map(item => (
           <Grid key={item.id} container direction="row" alignItems="center">
-            <ListItem sx={{ width: '475px' }} button onClick={() => handleClick(`/team/${item.id}`)}>
+            <ListItem sx={{ width: '475px' }} button onClick={() => handleClick(item.id)}>
               {item.team.map(item => {
                 const pokemon = getPokemonForID(item.pokemonID)
                 return (

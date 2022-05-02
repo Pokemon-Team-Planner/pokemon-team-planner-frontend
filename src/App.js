@@ -16,6 +16,7 @@ import { Routes, Route } from "react-router-dom"
 import IconButton from '@mui/material/IconButton'
 
 import MenuIcon from '@mui/icons-material/Menu'
+import Team from "./components/Team"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -83,6 +84,7 @@ const App = () => {
         <Notification />
 
         <Routes>
+          <Route path="/teams/:id" element={<Team />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/" element={<><PokemonTeam /><PokemonGridSimple /></>} />
         </Routes>
