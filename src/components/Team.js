@@ -36,9 +36,8 @@ const Team = () => {
       <Grid container>
         {team.team.map(item => {
           const pokemon = getPokemonForID(item.pokemonID)
-          console.log(pokemon)
           return (
-            <Grid item key={pokemon.id} xs={4} sm={4} md={2}>
+            <Grid item key={item._id} xs={4} sm={4} md={2}>
               <Card
                 sx={{ display: 'flex', flexDirection: 'column', minWidth: '128px' }}
               >
