@@ -11,17 +11,22 @@ const drawer = ({ location, dispatch, drawerWidth }) => {
       <Toolbar />
       <Divider />
       <Navigation />
-      { location.pathname === '/' ? <TypeFilter /> : null }
-      <FormGroup sx={{ padding: 1}}>
-        <FormControlLabel control={
-            <Switch onChange={() => dispatch({ type: 'TOGGLE_ONLY_EXCLUSIVE', data: null })} />
-          }
-          label="only exclusive"
-        />
-      </FormGroup>
+      {location.pathname === '/'
+        ?
+        <>
+          <TypeFilter />
+          <FormGroup sx={{ padding: 1 }}>
+            <FormControlLabel control={
+              <Switch onChange={() => dispatch({ type: 'TOGGLE_ONLY_EXCLUSIVE', data: null })} />
+            }
+              label="only exclusive"
+            />
+          </FormGroup>
+        </>
+        : null}
     </div>
   )
-} 
+}
 
 const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
   const location = useLocation()
