@@ -4,10 +4,10 @@ import { Grid, Card, CardMedia, CardContent, CardActionArea, Typography } from '
 const Pokemon = ({ pokemon, handleClick }) => {
 
   return (
-    <div>
-      <Grid item key={pokemon.id} xs="auto" sm="auto" md="auto">
+    <>
+      <Grid item key={pokemon.id} xs={4} sm={4} md={2}>
         <Card
-          sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: '128px' }}
+          sx={{ display: 'flex', minWidth: '128px' }}
         >
           <CardActionArea onClick={handleClick}>
             <CardMedia
@@ -38,7 +38,7 @@ const Pokemon = ({ pokemon, handleClick }) => {
           </CardActionArea>
         </Card>
       </Grid>
-    </div>
+    </>
   )
 }
 
