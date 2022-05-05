@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Grid, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import Pokemon from './Pokemon'
 import { useSelector, useDispatch } from 'react-redux'
 import { removePokemon } from '../reducers/pokemonTeamReducer'
@@ -30,21 +30,27 @@ const PokemonTeam = () => {
   }
 
   return (
-    <Container maxWidth='md' disableGutters='true'>
-      <Typography variant="h6">
-        My team:
-      </Typography>
-      <Grid container>
-        {pokemonTeam.map(pokemon => 
-          <Pokemon
-            key={pokemon.uniqueId}
-            pokemon={pokemon}
-            handleClick={ () =>
-              dispatch(removePokemon(pokemon))} />
-        )}
-        {emptyTeamMembers}
-      </Grid>
-      <TeamCreationModal />
+    <Container 
+      maxWidth='md'
+      disableGutters={true}
+      sx={{ display: 'flex', justifyContent: 'center' }}
+    >
+      <Box>
+        <Typography variant="h6">
+          My team:
+        </Typography>
+        <Grid container>
+          {pokemonTeam.map(pokemon => 
+            <Pokemon
+              key={pokemon.uniqueId}
+              pokemon={pokemon}
+              handleClick={ () =>
+                dispatch(removePokemon(pokemon))} />
+          )}
+          {emptyTeamMembers}
+        </Grid>
+        <TeamCreationModal />
+      </Box>
     </Container>
   )
 }

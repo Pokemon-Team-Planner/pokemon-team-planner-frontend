@@ -38,7 +38,7 @@ const Teams = () => {
     <div>
       <Container
         maxWidth='md'
-        disableGutters='true'
+        disableGutters={true}
         sx={{ display: 'flex', justifyContent: 'center' }}
       >
         <List>
