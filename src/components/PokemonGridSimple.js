@@ -39,7 +39,7 @@ const PokemonGridSimple = () => {
 
   return (
     <div>
-      <Typography variant="h6">
+      <Typography variant="h6" mt='20px'>
         Available:
       </Typography>
         {pokemonToShow.map(pokemon => 

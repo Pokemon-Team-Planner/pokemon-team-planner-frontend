@@ -1,8 +1,7 @@
 import React from 'react'
-import { Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import Pokemon from './Pokemon'
 import { useSelector, useDispatch } from 'react-redux'
-import { Box } from '@mui/system'
 import { removePokemon } from '../reducers/pokemonTeamReducer'
 import { v4 as uuidv4 } from 'uuid';
 import questionMarkSprite from '../assets/question-mark.png'
@@ -31,7 +30,7 @@ const PokemonTeam = () => {
   }
 
   return (
-    <Box paddingBottom="20px">
+    <Container maxWidth='md' disableGutters='true'>
       <Typography variant="h6">
         My team:
       </Typography>
@@ -46,7 +45,7 @@ const PokemonTeam = () => {
         {emptyTeamMembers}
       </Grid>
       <TeamCreationModal />
-    </Box>
+    </Container>
   )
 }
 

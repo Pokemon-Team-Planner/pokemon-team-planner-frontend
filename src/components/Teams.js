@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, ListItem, Button, Grid } from '@mui/material'
+import { List, ListItem, Button, Grid, Container } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
@@ -36,21 +36,27 @@ const Teams = () => {
 
   return (
     <div>
-      <List>
-        {teams.map(item => (
-          <Grid key={item.id} container direction="row" alignItems="center">
-            <ListItem sx={{ width: '475px' }} button onClick={() => handleClick(item.id)}>
-              {item.team.map(item => {
-                const pokemon = getPokemonForID(item.pokemonID)
-                return (
-                  <img width='72' src={pokemon.sprite} alt={pokemon.name} key={item._id} />
-                )
-              })}
-            </ListItem>
-            <Button onClick={() => handleDelete(item.id)}><DeleteOutlineOutlinedIcon /></Button>
-          </Grid>
-        ))}
-      </List>
+      <Container
+        maxWidth='md'
+        disableGutters='true'
+        sx={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <List>
+          {teams.map(item => (
+            <Grid key={item.id} container direction="row" alignItems="center">
+              <ListItem sx={{ width: '475px' }} button onClick={() => handleClick(item.id)}>
+                {item.team.map(item => {
+                  const pokemon = getPokemonForID(item.pokemonID)
+                  return (
+                    <img width='72' src={pokemon.sprite} alt={pokemon.name} key={item._id} />
+                  )
+                })}
+              </ListItem>
+              <Button onClick={() => handleDelete(item.id)}><DeleteOutlineOutlinedIcon /></Button>
+            </Grid>
+          ))}
+        </List>
+      </Container>
     </div>
   )
 }
