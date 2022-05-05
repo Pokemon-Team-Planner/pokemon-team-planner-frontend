@@ -10,7 +10,7 @@ const Team = () => {
 
   let team = teams.find(team => team.id === id)
   //add placeholder data
-  team = {...team, user: 'Anon', gameVersion: 'FireRed'}
+  team = {...team, user: 'Anon', gameVersion: 'Pokemon FireRed'}
   console.log(team)
 
   const getPokemonForID = (id) => {
@@ -71,9 +71,10 @@ const Team = () => {
           )
         })}
       </Grid>
-      <Typography mt={2} variant='h6'>{team.title} ({team.gameVersion})</Typography>
-      <Typography variant='body2' sx={{ textIndent: '2em' }}>by {team.user} on {date.toString()}</Typography>
-      <Typography mt={2}>{team.description}</Typography>
+      <Typography mt={2} variant='h6'>{team.title}</Typography>
+      <Typography variant='body2' sx={{ marginTop: '5px' }}>{team.user} • {date.toString()}</Typography>
+      <Typography variant='body2' >{team.gameVersion}</Typography>
+      <Typography mt={2} sx={{ whiteSpace: 'pre-line' }}>{team.description}</Typography>
     </div>
   )
 }
