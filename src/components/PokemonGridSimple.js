@@ -10,12 +10,22 @@ const PokemonGridSimple = () => {
   const types = useSelector(state => state.types)
   const onlyExclusive = useSelector(state => state.onlyExclusive)
   const notification = useNotification()
+  const pokemonTeam = useSelector(state => state.pokemonTeam)
 
   const handleClick = (pokemon) => {
-    dispatch(addPokemon(pokemon))
+
+    if (pokemonTeam.length < 6) {
+      dispatch(addPokemon(pokemon))
+      notification.send(
+        `${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)} added to team`,
+        'success',
+        2000
+      )
+      return
+    }
     notification.send(
-      `${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)} added to team`,
-      'success',
+      `Team is already full`,
+      'info',
       2000
     )
   }
