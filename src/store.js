@@ -7,7 +7,6 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import pokemonReducer from './reducers/pokemonReducer'
 import pokemonTeamReducer from './reducers/pokemonTeamReducer'
 import typeReducer from './reducers/typeReducer'
-import loginCredentialsReducer from './reducers/loginCredentialsReducer'
 import userReducer from './reducers/userReducer'
 import notificationReducer from "./reducers/notificationReducer"
 import teamsReducer from "./reducers/teamsReducer"
@@ -17,7 +16,6 @@ const reducer = combineReducers({
   pokemon: pokemonReducer,
   pokemonTeam: pokemonTeamReducer,
   types: typeReducer,
-  loginCredentials: loginCredentialsReducer,
   user: userReducer,
   notification: notificationReducer,
   teams: teamsReducer,

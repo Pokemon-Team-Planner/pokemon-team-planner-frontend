@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import loginService from '../services/login'
 import Modal from '@mui/material/Modal'
@@ -14,7 +14,8 @@ export default function BasicModal() {
   const handleClose = () => setOpen(false)
 
   const dispatch = useDispatch()
-  const loginCredentials = useSelector(state => state.loginCredentials)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const user = useSelector(state => state.user)
 
   const handleLogout = () => {
@@ -26,12 +27,12 @@ export default function BasicModal() {
     event.preventDefault()
 
     try {
-      const user = await loginService.login(loginCredentials)
+      const user = await loginService.login({username, password})
 
       teamService.setToken(user.token)
       dispatch({ type: 'SET_USER', data: user })
-      dispatch({ type: 'SET_USERNAME', data: '' })
-      dispatch({ type: 'SET_PASSWORD', data: '' })
+      setUsername('')
+      setPassword('')
     } catch (exception) {
       console.log(exception)
     }
@@ -100,8 +101,8 @@ export default function BasicModal() {
                 <TextField
                   label="Username"
                   type="text"
-                  value={loginCredentials.username}
-                  onChange={({ target }) => dispatch({ type: 'SET_USERNAME', data: target.value })}
+                  value={username}
+                  onChange={({ target }) => setUsername(target.value) }
                   margin="dense"
                   variant="standard"
                   required
@@ -110,8 +111,8 @@ export default function BasicModal() {
                 <TextField
                   label="Password"
                   type="password"
-                  value={loginCredentials.password}
-                  onChange={({ target }) => dispatch({ type: 'SET_PASSWORD', data: target.value })}
+                  value={password}
+                  onChange={({ target }) => setPassword(target.value) }
                   margin="dense"
                   variant="standard"
                   required
