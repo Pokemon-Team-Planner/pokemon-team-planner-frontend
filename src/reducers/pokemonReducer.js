@@ -9,9 +9,10 @@ const pokemonReducer = (state = [], action) => {
   }
 }
 
-export const initializePokemon = (firstId, lastId) => {
-  return async dispatch => {
-    const data = await pokemonService.get("firered-pokedex.json")
+export const initializePokemon = (selectedGame) => {
+  return async (dispatch, getState) => {
+    const file = getState().games[selectedGame].data
+    const data = await pokemonService.get(file)
 
     console.log('data',data)
 

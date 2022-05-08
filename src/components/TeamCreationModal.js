@@ -19,6 +19,8 @@ const TeamCreationModal = () => {
 
   const dispatch = useDispatch()
   const pokemonTeam = useSelector(state => state.pokemonTeam)
+  const selectedGame = useSelector(state => state.selectedGame)
+  const games = useSelector(state => state.games)
 
   const handlePublish = async (event) => {
     event.preventDefault()
@@ -28,7 +30,7 @@ const TeamCreationModal = () => {
     })
 
     const data = {
-      gameVersionPokedex: "firered-pokedex.json",
+      gameVersionPokedex: games[selectedGame].data,
       team: pokemonIDs,
       title,
       description
@@ -46,7 +48,7 @@ const TeamCreationModal = () => {
         teamService.setToken(null)
         return
       }
-      
+
       notification.send(`Failed: ${error.message}`, 'error')
     }
   }

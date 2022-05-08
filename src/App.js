@@ -23,21 +23,24 @@ import { initializeGames } from "./reducers/gamesReducer"
 const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-
-  useEffect(() => {
-    console.log('Initializing pokemon')
-    dispatch(initializePokemon(1,151))
-    
-  }, [dispatch])
-
-  useEffect(() => {
-    console.log('Initializing teams')
-    dispatch(initializeTeams())
-  }, [dispatch])
+  const selectedGame = useSelector(state => state.selectedGame)
 
   useEffect(() => {
     console.log('Initializing games and selected game')
     dispatch(initializeGames())
+  }, [dispatch])
+
+  useEffect(() => {
+    console.log('Retrieving pokemon')
+    //Only execute when selectedGame is initialized or changed
+    if (selectedGame) {
+      dispatch(initializePokemon(selectedGame))
+    }
+  }, [dispatch, selectedGame])
+
+  useEffect(() => {
+    console.log('Initializing teams')
+    dispatch(initializeTeams())
   }, [dispatch])
 
   useEffect(() => {
