@@ -17,6 +17,8 @@ import IconButton from '@mui/material/IconButton'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import Team from "./components/Team"
+import GameSelection from "./components/GameSelection"
+import { initializeGames } from "./reducers/gamesReducer"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -31,6 +33,11 @@ const App = () => {
   useEffect(() => {
     console.log('Initializing teams')
     dispatch(initializeTeams())
+  }, [dispatch])
+
+  useEffect(() => {
+    console.log('Initializing games and selected game')
+    dispatch(initializeGames())
   }, [dispatch])
 
   useEffect(() => {
@@ -86,7 +93,7 @@ const App = () => {
         <Routes>
           <Route path="/teams/:id" element={<Team />} />
           <Route path="/teams" element={<Teams />} />
-          <Route path="/" element={<><PokemonTeam /><PokemonGridSimple /></>} />
+          <Route path="/" element={<><GameSelection /><PokemonTeam /><PokemonGridSimple /></>} />
         </Routes>
         
       </Box>
