@@ -31,6 +31,7 @@ const TeamCreationModal = () => {
 
     const data = {
       gameVersionPokedex: games[selectedGame].data,
+      gameVersionName: selectedGame,
       team: pokemonIDs,
       title,
       description
