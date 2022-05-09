@@ -8,10 +8,7 @@ const Team = () => {
   const teams = useSelector(state => state.teams)
   const pokemon = useSelector(state => state.pokemon)
 
-  let team = teams.find(team => team.id === id)
-  //add placeholder data
-  team = {...team, user: 'Anon'}
-  console.log(team)
+  const team = teams.find(team => team.id === id)
 
   const getPokemonForID = (id) => {
     return pokemon.find(item => item.id === id)
@@ -77,7 +74,7 @@ const Team = () => {
             })}
           </Grid>
           <Typography mt={2} variant='h6'>{team.title}</Typography>
-          <Typography variant='body2' sx={{ marginTop: '5px' }}>{team.user} • {date.toString()}</Typography>
+          <Typography variant='body2' sx={{ marginTop: '5px' }}>{team.user.name} • {date.toString()}</Typography>
           <Typography variant='body2' >{team.gameVersionName}</Typography>
           <Typography mt={2} sx={{ whiteSpace: 'pre-line' }}>{team.description}</Typography>
         </Box>
