@@ -10,6 +10,7 @@ import { useNotification } from '../hooks'
 const Teams = () => {
   const teams = useSelector(state => state.teams)
   const pokemon = useSelector(state => state.pokemon)
+  const selectedGame = useSelector(state => state.selectedGame)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const notification = useNotification()
@@ -34,6 +35,8 @@ const Teams = () => {
     }
   }
 
+  const teamToShow = teams.filter(team => team.gameVersionName === selectedGame)
+
   return (
     <div>
       <Container
@@ -42,7 +45,7 @@ const Teams = () => {
         sx={{ display: 'flex', justifyContent: 'center' }}
       >
         <List>
-          {teams.map(item => (
+          {teamToShow.map(item => (
             <Grid key={item.id} container direction="row" alignItems="center">
               <ListItem sx={{ width: '475px' }} button onClick={() => handleClick(item.id)}>
                 {item.team.map(item => {
