@@ -41,7 +41,8 @@ const TeamCreationModal = () => {
       const response = await teamService.create(data)
       dispatch(addTeam(response))
       notification.send('A new team added', 'success')
-
+      setTitle('')
+      setDescription('')
     } catch (error) {
       if (error.message === 'Request failed with status code 401') {
         notification.send(`Failed: Unauthorized - you're not logged in or token has expired`, 'error')
