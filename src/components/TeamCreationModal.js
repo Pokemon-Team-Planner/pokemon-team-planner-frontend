@@ -22,8 +22,7 @@ const TeamCreationModal = () => {
   const selectedGame = useSelector(state => state.selectedGame)
   const games = useSelector(state => state.games)
 
-  const handlePublish = async (event) => {
-    event.preventDefault()
+  const handlePublish = async (mode) => {
 
     const pokemonIDs = pokemonTeam.map(pokemon => {
       return { pokemonID: pokemon.id }
@@ -38,7 +37,13 @@ const TeamCreationModal = () => {
     }
 
     try {
-      const response = await teamService.create(data)
+      let response
+      if (mode === 'anonymous') {
+        response = await teamService.createAnonymous(data)
+      } else {
+        response = await teamService.create(data)
+      }
+
       dispatch(addTeam(response))
       notification.send('A new team added', 'success')
       setTitle('')
@@ -80,7 +85,7 @@ const TeamCreationModal = () => {
               <Typography variant='h5'>Team Creation</Typography>
             </Stack>
             
-            <form onSubmit={handlePublish}>
+            <form onSubmit={e => e.preventDefault()}>
                 <TextField
                   label="Title"
                   type="text"
@@ -101,7 +106,8 @@ const TeamCreationModal = () => {
                   margin="dense"
                   fullWidth
                 />
-              <Button type="submit" sx={{ margin: "8px 0" }} variant="contained" fullWidth>publish</Button>
+              <Button onClick={() => handlePublish()} sx={{ margin: "8px 0" }} variant="contained" fullWidth>publish</Button>
+              <Button onClick={() => handlePublish('anonymous')} sx={{ margin: "8px 0" }} variant="contained" fullWidth>publish anonymously</Button>
             </form>
           </Paper>
         </Box>

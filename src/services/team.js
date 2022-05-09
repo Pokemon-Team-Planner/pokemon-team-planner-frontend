@@ -21,6 +21,11 @@ const create = async newObject => {
   return response.data
 }
 
+const createAnonymous = async newObject => {
+  const response = await axios.post(`${ baseUrl }/anonymous`, newObject)
+  return response.data
+}
+
 const update = async (id, newObject) => {
   const response = await axios.put(`${ baseUrl }/${id}`, newObject, config)
   return response.data
@@ -31,5 +36,5 @@ const remove = async id => {
   return response.data
 }
 
-const exports = { getAll, create, update, remove, setToken }
+const exports = { getAll, create, createAnonymous, update, remove, setToken }
 export default exports
