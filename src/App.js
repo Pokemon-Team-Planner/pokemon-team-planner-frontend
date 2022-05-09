@@ -78,6 +78,7 @@ const App = () => {
           <Typography variant="h5" noWrap component="div">
             {process.env.REACT_APP_NAME}
           </Typography>
+          <GameSelection />
           <LoginModal />
         </Toolbar>
       </AppBar>
@@ -96,7 +97,7 @@ const App = () => {
         <Routes>
           <Route path="/teams/:id" element={<Team />} />
           <Route path="/teams" element={<Teams />} />
-          <Route path="/" element={<><GameSelection /><PokemonTeam /><PokemonGridSimple /></>} />
+          <Route path="/" element={<><PokemonTeam /><PokemonGridSimple /></>} />
         </Routes>
         
       </Box>

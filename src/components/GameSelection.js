@@ -17,12 +17,31 @@ const GameSelection = () => {
     menuItems.push(<MenuItem value={key} key={key}>{key}</MenuItem>)
   }
 
+  const styles = {
+    select: {
+      '.MuiOutlinedInput-input': {
+        color: '#fff',
+      },
+      '.MuiOutlinedInput-notchedOutline': {
+        borderColor: '#fff',
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#fff',
+        borderWidth: '0.15rem',
+      },
+      '.MuiSelect-icon': {
+        color: '#fff'
+      }
+    },
+  }
+
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 130 }}>
+      <FormControl sx={{ m: 0, minWidth: 130, color: 'white' }}>
         <Select
           value={selectedGame}
           onChange={handleChange}
+          sx={styles.select}
         >
           {menuItems}
         </Select>
