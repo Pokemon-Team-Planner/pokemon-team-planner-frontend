@@ -16,6 +16,7 @@ import { Routes, Route } from "react-router-dom"
 import IconButton from '@mui/material/IconButton'
 
 import MenuIcon from '@mui/icons-material/Menu'
+import { ReactComponent as AppIcon } from './assets/pokemon-team-planner-logo.svg'
 import Team from "./components/Team"
 import GameSelection from "./components/GameSelection"
 import { initializeGames } from "./reducers/gamesReducer"
@@ -75,6 +76,7 @@ const App = () => {
           >
             <MenuIcon />
           </IconButton>
+          <AppIcon className="app-icon" />
           <Typography variant="h5" noWrap component="div">
             {process.env.REACT_APP_NAME}
           </Typography>

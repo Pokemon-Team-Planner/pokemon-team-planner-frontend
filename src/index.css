@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.app-icon {
+  height: 64px;
+  width: 64px;
+  padding: 7px;
+}
+
 .type-icon {
   border-radius: 35%;
   height: 32px;
