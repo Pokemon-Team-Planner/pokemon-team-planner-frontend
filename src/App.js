@@ -11,7 +11,7 @@ import LoginModal from "./components/LoginModal"
 import Notification from "./components/Notification"
 import Teams from "./components/Teams"
 import teamService from "./services/team"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 
 import IconButton from '@mui/material/IconButton'
 
@@ -25,6 +25,7 @@ const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const selectedGame = useSelector(state => state.selectedGame)
+  const navigate = useNavigate()
 
   useEffect(() => {
     console.log('Initializing games and selected game')
@@ -77,10 +78,16 @@ const App = () => {
             <MenuIcon />
           </IconButton>
           <div style={{display: 'flex',  alignItems: 'center', gap: '7px'}}>
-            <AppIcon className="app-icon" />
-            <Typography variant="h6" component="div" sx={{ marginRight: 3 }}>
-              {process.env.REACT_APP_NAME}
-            </Typography>
+            <div
+              style={{display: 'flex',  alignItems: 'center', gap: '7px', cursor: 'pointer'}}
+              onClick={() => navigate('/')}
+              title={`${process.env.REACT_APP_NAME}'s front page`}
+            >
+              <AppIcon className="app-icon" />
+              <Typography variant="h6" component="div" sx={{ marginRight: 3 }}>
+                {process.env.REACT_APP_NAME}
+              </Typography>
+            </div>
             <GameSelection />
           </div>
           <LoginModal />
