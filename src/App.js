@@ -76,11 +76,13 @@ const App = () => {
           >
             <MenuIcon />
           </IconButton>
-          <AppIcon className="app-icon" />
-          <Typography variant="h5" noWrap component="div">
-            {process.env.REACT_APP_NAME}
-          </Typography>
-          <GameSelection />
+          <div style={{display: 'flex',  alignItems: 'center', gap: '7px'}}>
+            <AppIcon className="app-icon" />
+            <Typography variant="h6" component="div" sx={{ marginRight: 3 }}>
+              {process.env.REACT_APP_NAME}
+            </Typography>
+            <GameSelection />
+          </div>
           <LoginModal />
         </Toolbar>
       </AppBar>
