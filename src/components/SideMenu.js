@@ -3,9 +3,9 @@ import { Box, Drawer, Toolbar, Divider, Switch, FormGroup, FormControlLabel } fr
 import TypeFilter from './TypeFilter'
 import Navigation from './Navigation'
 import { useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-const drawer = ({ location, dispatch, drawerWidth }) => {
+const drawer = ({ location, dispatch, onlyExclusive }) => {
   return (
     <div>
       <Toolbar />
@@ -17,7 +17,7 @@ const drawer = ({ location, dispatch, drawerWidth }) => {
           <TypeFilter />
           <FormGroup sx={{ padding: 1 }}>
             <FormControlLabel control={
-              <Switch onChange={() => dispatch({ type: 'TOGGLE_ONLY_EXCLUSIVE', data: null })} />
+              <Switch checked={onlyExclusive} onChange={() => dispatch({ type: 'TOGGLE_ONLY_EXCLUSIVE', data: null })} />
             }
               label="only exclusive"
             />
@@ -31,6 +31,7 @@ const drawer = ({ location, dispatch, drawerWidth }) => {
 const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
   const location = useLocation()
   const dispatch = useDispatch()
+  const onlyExclusive = useSelector(state => state.onlyExclusive)
 
   return (
     <div>
@@ -62,7 +63,7 @@ const SideFilterMenu = ({ drawerWidth, handleDrawerToggle, mobileOpen }) => {
           }}
           open
         >
-          {drawer({ location, dispatch, drawerWidth })}
+          {drawer({ location, dispatch, onlyExclusive })}
         </Drawer>
       </Box>
     </div>
