@@ -9,8 +9,9 @@ const Pokemon = ({ pokemon, handleClick }) => {
         <Card
           sx={{ display: 'flex', minWidth: '128px' }}
         >
-          <CardActionArea onClick={handleClick}>
+          <CardActionArea data-testid="clickable" onClick={handleClick}>
             <CardMedia
+              data-testid="image"
               component="img"
               sx= {{
                 width: "96px",
@@ -26,10 +27,10 @@ const Pokemon = ({ pokemon, handleClick }) => {
               alt={`${pokemon.name}`}
             />
           <CardContent>
-            <Typography align="center" variant="subtitle2">
+            <Typography data-testid="name" align="center" variant="subtitle2">
               {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
             </Typography>
-            <Typography align="center" variant="body2" color="text.secondary">
+            <Typography data-testid="types" align="center" variant="body2" color="text.secondary">
               {`${pokemon.types.map( e => 
                 e.name
               ).join(', ')}`}
