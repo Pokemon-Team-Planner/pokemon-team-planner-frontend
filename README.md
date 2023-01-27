@@ -6,10 +6,10 @@
 
 This is the frontend for my Pokemon Team Planner project.
 Features:
-* Plan a team of up to 6 Pokemon
+* Plan a team of up to 6 Pokemon for selected game
 * Filter by type and exclusiveness to game version
-* Save team anonymously or with your user account
-* View your and other's Pokemon teams
+* Save your team anonymously or with your user account
+* Browse created Pokemon teams
 
 Try at https://pokemon-team-planner.onrender.com/
 
