@@ -1,6 +1,6 @@
 # Frontend for Pokemon Team Planner
 
-![](src\assets\pokemon-team-planner-logo-outlined.png)
+![pokemon team planner logo](src/assets/pokemon-team-planner-logo-outlined.png)
 
 ## React app for planning and sharing Pokemon teams 
 
